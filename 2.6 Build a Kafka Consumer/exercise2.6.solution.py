@@ -7,7 +7,6 @@ from confluent_kafka import Consumer, Producer
 from confluent_kafka.admin import AdminClient, NewTopic
 from faker import Faker
 
-
 faker = Faker()
 
 BROKER_URL = "PLAINTEXT://localhost:9092"
@@ -44,7 +43,6 @@ def main():
     except KeyboardInterrupt as e:
         print("shutting down")
 
-
 async def produce(topic_name):
     """Produces data into the Kafka Topic"""
     p = Producer({"bootstrap.servers": BROKER_URL})
@@ -52,15 +50,13 @@ async def produce(topic_name):
         for _ in range(10):
             p.produce(topic_name, Purchase().serialize())
         await asyncio.sleep(0.01)
-
-
+    
 async def produce_consume(topic_name):
     """Runs the Producer and Consumer tasks"""
     t1 = asyncio.create_task(produce(topic_name))
     t2 = asyncio.create_task(consume(topic_name))
     await t1
     await t2
-
 
 @dataclass
 class Purchase:
@@ -76,7 +72,6 @@ class Purchase:
                 "amount": self.amount,
             }
         )
-
 
 if __name__ == "__main__":
     main()

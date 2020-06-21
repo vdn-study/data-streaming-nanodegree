@@ -65,7 +65,6 @@ def main():
 
     if exists is False:
         create_topic(client, topic_name)
-
     try:
         asyncio.run(produce_consume(topic_name))
     except KeyboardInterrupt as e:
