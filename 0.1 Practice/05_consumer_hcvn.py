@@ -9,8 +9,9 @@ from faker import Faker
 
 faker = Faker()
 
-BROKER_URL = "PLAINTEXT://localhost:9092"
+# BROKER_URL = "PLAINTEXT://kafka01-vn00c1.vn.infra:9092"
 
+BROKER_URL = "PLAINTEXT://localhost:9092"
 @dataclass
 class Purchase:
     username: str = field(default_factory=faker.user_name)
@@ -28,9 +29,9 @@ class Purchase:
 
 async def produce_consume(topic_name):
     t1 = asyncio.create_task(produce(topic_name))
-    t2 = asyncio.create_task(consume(topic_name))
+    # t2 = asyncio.create_task(consume(topic_name))
     await t1
-    await t2
+    # await t2
 
 async def produce(topic_name):
     p = Producer({"bootstrap.servers": BROKER_URL})
@@ -61,6 +62,6 @@ if __name__=="__main__":
     client = AdminClient({"bootstrap.servers": BROKER_URL})
 
     try:
-        asyncio.run(produce_consume("py-consumer"))
+        asyncio.run(produce_consume("streaming.risk.data_score_test"))
     except KeyboardInterrupt as e:
         print("Shutting down ...")

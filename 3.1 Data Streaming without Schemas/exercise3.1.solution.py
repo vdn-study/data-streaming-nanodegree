@@ -48,7 +48,7 @@ async def consume(topic_name):
                         uri=clickevent_json["uri"],
                     )
                 )
-            except KeyError as e:
+            except KeyError as e:   
                 print(f"Failed to unpack message {e}")
         await asyncio.sleep(1.0)
 

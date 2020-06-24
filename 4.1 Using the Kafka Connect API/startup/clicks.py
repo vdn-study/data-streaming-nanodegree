@@ -50,7 +50,6 @@ def produce():
         )
         time.sleep(0.1)
 
-
 def main():
     """Checks for topic and creates the topic if it does not exist"""
     try:
