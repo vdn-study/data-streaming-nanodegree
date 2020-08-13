@@ -1,12 +1,13 @@
 import logging
 import logging.config
 from configparser import ConfigParser
+import os
+cur_path = os.path.dirname(os.path.realpath(__file__))
 
 # make sure logging config is picked up by modules
-logging.config.fileConfig("logging.ini")
+logging.config.fileConfig(os.path.join(cur_path, "logging.ini"))
 
 import producer_server
-
 
 def run_kafka_producer():
     """
@@ -15,7 +16,7 @@ def run_kafka_producer():
 
     # load config
     config = ConfigParser()
-    config.read("app.cfg")
+    config.read(os.path.join(cur_path, "app.cfg"))
 
     # start kafka producer
     logger.info("Starting Kafka Producer")

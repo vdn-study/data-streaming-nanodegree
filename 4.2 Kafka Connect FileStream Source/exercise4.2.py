@@ -47,7 +47,6 @@ def configure_connector():
     resp.raise_for_status()
     print("connector created successfully")
 
-
 async def log():
     """Continually appends to the end of a file"""
     with open(f"/tmp/{CONNECTOR_NAME}.log", "w") as f:

@@ -9,9 +9,9 @@ from faker import Faker
 
 faker = Faker()
 
-# BROKER_URL = "PLAINTEXT://kafka01-vn00c1.vn.infra:9092"
+BROKER_URL = "PLAINTEXT://kafka01-vn00c1.vn.infra:9092"
 
-BROKER_URL = "PLAINTEXT://localhost:9092"
+# BROKER_URL = "PLAINTEXT://localhost:9092"
 @dataclass
 class Purchase:
     username: str = field(default_factory=faker.user_name)
@@ -62,6 +62,6 @@ if __name__=="__main__":
     client = AdminClient({"bootstrap.servers": BROKER_URL})
 
     try:
-        asyncio.run(produce_consume("streaming.risk.data_score_test"))
+        asyncio.run(produce_consume("COE-LOG-DEV-HOMEX"))
     except KeyboardInterrupt as e:
         print("Shutting down ...")

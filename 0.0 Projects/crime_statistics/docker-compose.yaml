@@ -62,7 +62,7 @@ services:
     environment:
       MASTER: spark://master:7077
       SPARK_CONF_DIR: /conf
-      SPARK_PUBLIC_DNS: localhost
+      SPARK_PUBLIC_DNS: localhost 
     expose:
       - 7001
       - 7002
